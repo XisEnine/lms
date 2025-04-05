@@ -44,6 +44,7 @@ void adminMenu() {
     printf("4. Display All Books\n");
     printf("5. View Borrowed Books Report\n");
     printf("6. Back to Main Menu\n");
+    printf("7. Exit\n"); // Added Exit option
     printf("Enter choice: ");
     scanf("%d", &choice);
     while (getchar() != '\n')
@@ -142,11 +143,15 @@ void adminMenu() {
       printf("Returning to Main Menu.\n");
       break;
 
+    case 7: // Exit option
+      printf("Exiting system.\n");
+      break;
+
     default:
       printf("Invalid choice.\n");
       waitForEnter();
     }
-  } while (choice != 6);
+  } while (choice != 6 && choice != 7); // Exit condition updated
 }
 
 void guestMenu() {
@@ -162,6 +167,7 @@ void guestMenu() {
     printf("3. Borrow Book\n");
     printf("4. Return Book\n");
     printf("5. Back to Main Menu\n");
+    printf("6. Exit\n"); // Added Exit option
     printf("Enter choice: ");
     scanf("%d", &choice);
     while (getchar() != '\n')
@@ -187,7 +193,8 @@ void guestMenu() {
         waitForEnter();
         break;
       }
-      memset(transaction, 0, sizeof(BorrowTransaction)); // Initialize memory
+      memset(transaction, 0,
+             sizeof(BorrowTransaction)); // Initialize memory
 
       time_t now = time(NULL);
       snprintf(transaction->tokenID, sizeof(transaction->tokenID), "T%ld", now);
@@ -241,11 +248,15 @@ void guestMenu() {
       printf("Returning to Main Menu.\n");
       break;
 
+    case 6: // Exit option
+      printf("Exiting system.\n");
+      break;
+
     default:
       printf("Invalid choice.\n");
       waitForEnter();
     }
-  } while (choice != 4);
+  } while (choice != 5 && choice != 6); // Exit condition updated
 }
 
 int main() {
